@@ -13,8 +13,8 @@ package com.euler.multiples;
 public class ThreeFiveMultipleDriver {
     public static void main(String[] args) {
         ThreeFiveMultipleFinder threeFiveMultipleFinder = new ThreeFiveMultipleFinder();
+       // int sum = threeFiveMultipleFinder.findThreeFiveMultiplesSum(1000);
         int sum = threeFiveMultipleFinder.findThreeFiveMultiplesSum(1000);
-
         System.out.println("Sum is : " + sum);
     }
 }
@@ -28,16 +28,23 @@ public class ThreeFiveMultipleDriver {
  * Return the sum.
  */
 class ThreeFiveMultipleFinder {
-    public int findThreeFiveMultiplesSum(int upperLimit){
+    public int findThreeFiveMultiplesSum(int upperLimit) {
 
         int sum = 0;
 
-        for(int loopIndex = 1; loopIndex < upperLimit; loopIndex++){
-            if(loopIndex % 3 == 0 || loopIndex % 5 == 0){
-                sum += loopIndex;
-            }
-        }
+        int sumOfNumbersDivisbleByThree = sumOfNaturalNumbersDividedByN(upperLimit-1, 3);
+        int sumOfNumbersDivisibleByFive = sumOfNaturalNumbersDividedByN(upperLimit-1, 5);
+        int sumOfNumbersDivisibleByFifteen = sumOfNaturalNumbersDividedByN(upperLimit-1, 15);
 
-        return sum;
+        System.out.println("sumOfNumbersDivisbleByThree : " + sumOfNumbersDivisbleByThree);
+        System.out.println("sumOfNumbersDivisibleByFive : " + sumOfNumbersDivisibleByFive);
+        System.out.println("sumOfNumbersDivisibleByFifteen : " + sumOfNumbersDivisibleByFifteen);
+
+        return sumOfNumbersDivisbleByThree + sumOfNumbersDivisibleByFive - sumOfNumbersDivisibleByFifteen;
+    }
+
+    public int sumOfNaturalNumbersDividedByN(int upperLimit, int d){
+        int m = (upperLimit) / d;
+        return d *(m * (m + 1) /2);
     }
 }
